@@ -1,10 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPWidget extends StatelessWidget {
+  final TextEditingController pinController;
   const OTPWidget({
     Key? key,
+    required this.pinController,
   }) : super(key: key);
 
   @override
@@ -31,7 +34,7 @@ class OTPWidget extends StatelessWidget {
       ),
     );
 
-    return Pinput(
+    return Pinput(controller: pinController,
       closeKeyboardWhenCompleted: true,
       defaultPinTheme: defaultPinTheme,
       keyboardType: TextInputType.number,

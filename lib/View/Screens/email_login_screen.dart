@@ -8,16 +8,36 @@ import '../../Core/utils/app_router.dart';
 import '../../Core/utils/Global Widgets/login_formfield.dart';
 import '../../Core/utils/Global Widgets/gradiant_button.dart';
 
-class EmailLoginScreen extends StatelessWidget {
+class EmailLoginScreen extends StatefulWidget {
   const EmailLoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+  State<EmailLoginScreen> createState() => _EmailLoginScreenState();
+}
 
+class _EmailLoginScreenState extends State<EmailLoginScreen> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(backgroundColor: const Color(0xFFEEFCFF),
+        child: Scaffold(
+      backgroundColor: const Color(0xFFEEFCFF),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: GestureDetector(
@@ -45,7 +65,6 @@ class EmailLoginScreen extends StatelessWidget {
                       AppStrings.account(context),
                       style: const TextStyle(
                           fontSize: 15,
-                        
                           color: Colors.indigo,
                           fontWeight: FontWeight.w900),
                     ),

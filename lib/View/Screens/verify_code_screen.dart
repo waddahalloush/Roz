@@ -9,8 +9,29 @@ import 'package:roz/Core/utils/Global%20Widgets/gradiant_button.dart';
 import '../../Core/utils/Global Widgets/gradiant_text.dart';
 import '../Widgets/verify_code_widgets/otp_widget.dart';
 
-class VerifyCodeScreen extends StatelessWidget {
+class VerifyCodeScreen extends StatefulWidget {
   const VerifyCodeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
+}
+
+class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
+  late TextEditingController pinController;
+
+  @override
+  void initState() {
+    pinController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pinController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +57,6 @@ class VerifyCodeScreen extends StatelessWidget {
               AppStrings.verify(context),
               style: const TextStyle(
                   fontSize: 22,
-                  
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF33196B)),
             ),
@@ -63,7 +83,7 @@ class VerifyCodeScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const OTPWidget(),
+            OTPWidget(pinController: pinController),
             const SizedBox(
               height: 20,
             ),

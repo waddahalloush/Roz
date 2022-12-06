@@ -31,6 +31,7 @@ dependencies:
   badges: ^2.0.3
   country_pickers: ^2.0.0
   cupertino_icons: ^1.0.2
+  draggable_float_widget: ^0.0.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
@@ -38,19 +39,18 @@ dependencies:
     sdk: flutter
   flutter_material_pickers: ^3.1.4+1
   font_awesome_flutter: ^10.2.1
-  toggle_switch: ^2.0.1
   gradient_borders: ^0.2.0
   image_picker: ^0.8.6
+  liquid_pull_to_refresh: ^3.0.1
   lottie: ^1.4.0
   material_design_icons_flutter: ^5.0.6996
   photo_view: ^0.14.0
-  liquid_pull_to_refresh: ^3.0.1
   pinput: ^2.2.12
+  provider: ^6.0.4
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   story: ^0.8.0
-  draggable_float_widget: ^0.0.2
-  # camera: ^0.10.0+3
+  toggle_switch: ^2.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

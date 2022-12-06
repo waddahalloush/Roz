@@ -7,15 +7,38 @@ import 'package:roz/Core/utils/Global%20Widgets/login_formfield.dart';
 import 'package:roz/View/Widgets/profile_details_widgets/image_widget.dart';
 import 'package:roz/Core/utils/Global%20Widgets/gradiant_button.dart';
 
-class ProfileDetailScreen extends StatelessWidget {
+class ProfileDetailScreen extends StatefulWidget {
   const ProfileDetailScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileDetailScreen> createState() => _ProfileDetailScreenState();
+}
+
+class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
+  late TextEditingController lNamecontroller;
+  late TextEditingController fNamecontroller;
+  late TextEditingController dobcontroller;
+
+  @override
+  void initState() {
+    lNamecontroller = TextEditingController();
+    fNamecontroller = TextEditingController();
+    dobcontroller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    lNamecontroller.dispose();
+    fNamecontroller.dispose();
+    dobcontroller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController lNamecontroller = TextEditingController();
-    TextEditingController fNamecontroller = TextEditingController();
     DateTime? date = DateTime.now();
-    TextEditingController dobcontroller = TextEditingController();
+
     List<String> sex = ["Woman", "Man"];
     String? selectedSex = "Man";
     return SafeArea(
@@ -32,7 +55,6 @@ class ProfileDetailScreen extends StatelessWidget {
                 AppStrings.profileDet(context),
                 style: const TextStyle(
                     fontSize: 22,
-                   
                     fontWeight: FontWeight.w900,
                     color: Color(0xFF33196B)),
               ),
@@ -101,9 +123,9 @@ class ProfileDetailScreen extends StatelessWidget {
                     hint: Text(
                       AppStrings.gender(context),
                       style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                        ),
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
                     ),
                     value: selectedSex,
                     items: sex
@@ -112,9 +134,9 @@ class ProfileDetailScreen extends StatelessWidget {
                               child: Text(
                                 e,
                                 style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 15,
-                                   ),
+                                  color: Colors.grey.shade600,
+                                  fontSize: 15,
+                                ),
                               ),
                             ))
                         .toList(),
