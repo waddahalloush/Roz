@@ -1,10 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
-import 'package:roz/Bloc/cubit/app_cubit.dart';
 import 'package:roz/Core/constants/app_strings.dart';
+
+import '../../View Model/app_provider.dart';
 
 class ChatScreen extends StatelessWidget {
   final String image;
@@ -145,7 +146,7 @@ class ChatScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.65,
                       height: MediaQuery.of(context).size.height * 0.09,
                       decoration: BoxDecoration(
-                          color: context.read<AppCubit>().isDark == 0
+                          color: context.read<AppProvider>().isDark == 0
                               ? Colors.grey.shade800
                               : Colors.grey.shade300,
                           borderRadius: const BorderRadius.only(
@@ -219,7 +220,7 @@ class ChatScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.6,
                       height: MediaQuery.of(context).size.height * 0.09,
                       decoration: BoxDecoration(
-                          color: context.read<AppCubit>().isDark == 0
+                          color: context.read<AppProvider>().isDark == 0
                               ? Colors.grey.shade800
                               : Colors.grey.shade200,
                           borderRadius: const BorderRadius.only(

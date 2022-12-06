@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:roz/Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 import 'package:roz/Core/constants/asset_manager.dart';
 import 'package:roz/Core/utils/Global%20Widgets/gradiant_button.dart';
+import 'package:roz/View%20Model/plans_provider.dart';
+import '../../View Model/app_provider.dart';
 
 class PlansScreen extends StatelessWidget {
   const PlansScreen({Key? key}) : super(key: key);
@@ -19,111 +19,116 @@ class PlansScreen extends StatelessWidget {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      AppStrings.access(context),
-                      style: Theme.of(context).primaryTextTheme.headline1,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          body: Consumer<PlansProvider>(
+            builder: (context, myType, child) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        AppStrings.plansSubscribe(context),
-                        style: Theme.of(context).primaryTextTheme.headline6,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      Image.asset(
-                        AssetManager.heart,
-                        height: 20,
-                        width: 20,
-                        fit: BoxFit.contain,
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 15),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: context.read<AppCubit>().isDark == 0
-                            ? const Color(0xFF1D0529)
-                            : Colors.white54,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const CircleAvatar(
-                          radius: 18,
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage(AssetManager.coin),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "25",
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppStrings.access(context),
                           style: Theme.of(context).primaryTextTheme.headline1,
                         ),
-                      ],
-                    ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppStrings.plansSubscribe(context),
+                            style: Theme.of(context).primaryTextTheme.headline6,
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          Image.asset(
+                            AssetManager.heart,
+                            height: 20,
+                            width: 20,
+                            fit: BoxFit.contain,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 15),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
+                        decoration: BoxDecoration(
+                            color: context.read<AppProvider>().isDark == 0
+                                ? const Color(0xFF1D0529)
+                                : Colors.white54,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.transparent,
+                              backgroundImage: AssetImage(AssetManager.coin),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "25",
+                              style:
+                                  Theme.of(context).primaryTextTheme.headline1,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppStrings.selectPlan(context),
+                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                        ),
+                      ),
+                      const PlanWidget(
+                        text: "100 Coins",
+                        duration: 3,
+                        price: 0.99,
+                      ),
+                      const PlanWidget(
+                        text: "1000 Coins",
+                        duration: 3,
+                        price: 8.99,
+                      ),
+                      const PlanWidget(
+                        text: "5000 Coins",
+                        duration: 3,
+                        price: 43.99,
+                      ),
+                      const PlanWidget(
+                        text: "12000 Coins",
+                        duration: 3,
+                        price: 99.99,
+                      ),
+                      const PlanWidget(
+                        text: "36500 Coins",
+                        duration: 3,
+                        price: 299.99,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GradiantButton(
+                          text: AppStrings.continu(context), onpress: () {})
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      AppStrings.selectPlan(context),
-                      style: Theme.of(context).primaryTextTheme.bodyText1,
-                    ),
-                  ),
-                  const PlanWidget(
-                    text: "100 Coins",
-                    duration: 3,
-                    price: 0.99,
-                  ),
-                  const PlanWidget(
-                    text: "1000 Coins",
-                    duration: 3,
-                    price: 8.99,
-                  ),
-                  const PlanWidget(
-                    text: "5000 Coins",
-                    duration: 3,
-                    price: 43.99,
-                  ),
-                  const PlanWidget(
-                    text: "12000 Coins",
-                    duration: 3,
-                    price: 99.99,
-                  ),
-                  const PlanWidget(
-                    text: "36500 Coins",
-                    duration: 3,
-                    price: 299.99,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  GradiantButton(
-                      text: AppStrings.continu(context), onpress: () {})
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           )),
     );
   }
@@ -149,7 +154,7 @@ class PlanWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
         decoration: BoxDecoration(
-            color: context.read<AppCubit>().isDark == 0
+            color: context.read<AppProvider>().isDark == 0
                 ? const Color(0xFF1D0529)
                 : Colors.white54,
             borderRadius: BorderRadius.circular(15)),

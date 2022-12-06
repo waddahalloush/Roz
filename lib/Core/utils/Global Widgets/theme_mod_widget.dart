@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
+import '../../../View Model/app_provider.dart';
 
 class ThemeModWidget extends StatelessWidget {
   const ThemeModWidget({
@@ -13,7 +12,7 @@ class ThemeModWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ToggleSwitch(
-      initialLabelIndex: context.read<AppCubit>().isDark == 0 ? 0 : 1,
+      initialLabelIndex: context.read<AppProvider>().isDark == 0 ? 0 : 1,
       minHeight: 30,
       minWidth: 40, changeOnTap: true,
       cornerRadius: 10.0,
@@ -37,7 +36,7 @@ class ThemeModWidget extends StatelessWidget {
       curve: Curves
           .easeInOut, // animate must be set to true when using custom curve
       onToggle: (index) {
-        context.read<AppCubit>().changeTheme(index!);
+        context.read<AppProvider>().changeTheme(index!);
       },
     );
   }

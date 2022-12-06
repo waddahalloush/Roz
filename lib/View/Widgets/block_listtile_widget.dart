@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
+import '../../View Model/app_provider.dart';
 
 class BlockListTileWidget extends StatelessWidget {
   final String image;
@@ -23,7 +22,7 @@ class BlockListTileWidget extends StatelessWidget {
         margin: const EdgeInsets.only(top: 15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: context.read<AppCubit>().isDark == 0
+            color: context.read<AppProvider>().isDark == 0
                 ? const Color(0xFF1D0529)
                 : Colors.white54,
             border: Border.all(color: Colors.grey.shade400)),

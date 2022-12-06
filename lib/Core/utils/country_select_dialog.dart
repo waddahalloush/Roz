@@ -1,10 +1,11 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
-import 'package:roz/Bloc/cubit/app_cubit.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 
-void openCountryPickerDialog(BuildContext context, AppCubit cubit) =>
+import '../../View Model/discover_provider.dart';
+
+void openCountryPickerDialog(BuildContext context, DiscoverProvider prov) =>
     showDialog(
       useSafeArea: false,
       context: context,
@@ -33,7 +34,7 @@ void openCountryPickerDialog(BuildContext context, AppCubit cubit) =>
           isSearchable: true,
           title: Text(AppStrings.selectCountry(context)),
           onValuePicked: (Country country) {
-            cubit.changeCountryFlag(country.isoCode);
+            prov.changeCountryFlag(country.isoCode);
           },
           itemFilter: (c) => [
                 'SY',
@@ -117,9 +118,9 @@ void openCountryPickerDialog(BuildContext context, AppCubit cubit) =>
                   ),
                 ),
                 onChanged: (value) {
-                  cubit.changeCountryFlag(country.isoCode);
+                  prov.changeCountryFlag(country.isoCode);
                 },
-                value: cubit.selectedCountry.contains(country.isoCode),
+                value: prov.selectedCountry.contains(country.isoCode),
               ))),
     );
 

@@ -1,10 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 import 'package:roz/Core/constants/asset_manager.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
+import 'package:roz/View%20Model/app_provider.dart';
 import '../../../Core/utils/app_router.dart';
 
 class DiscoverAppBarWidget extends StatelessWidget {
@@ -78,7 +77,7 @@ class DiscoverAppBarWidget extends StatelessWidget {
               size: 20,
             ),
             onPressed: () {
-              context.read<AppCubit>().openDrawer();
+              context.read<AppProvider>().openDrawer();
             },
           ),
         ),

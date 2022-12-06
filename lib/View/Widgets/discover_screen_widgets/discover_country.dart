@@ -3,12 +3,11 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 import 'package:roz/View/Widgets/discover_screen_widgets/dating_user_widget.dart';
 import 'package:roz/View/Widgets/discover_screen_widgets/discover_country_flag.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
 import '../../../Core/utils/Animation Page/fade_transition.dart';
 import '../../../Core/utils/Animation Page/scale_transition.dart';
 import '../../../Core/utils/country_select_dialog.dart';
 import '../../../Core/utils/user_contact_dialog.dart';
+import '../../../View Model/discover_provider.dart';
 import '../../Screens/add_story_screen.dart';
 import '../../Screens/dial_screen.dart';
 import '../../Screens/users_profile_screen.dart';
@@ -19,7 +18,7 @@ class DescoverCountryWidget extends StatelessWidget {
     required this.cubit,
   }) : super(key: key);
 
-  final AppCubit cubit;
+  final DiscoverProvider cubit;
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:roz/Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/utils/media_query_ex.dart';
 import '../../Core/constants/app_strings.dart';
 import '../../Core/utils/app_router.dart';
 import '../../Core/utils/Global Widgets/login_formfield.dart';
 import '../../Core/utils/Global Widgets/gradiant_button.dart';
+import '../../View Model/app_provider.dart';
 
 class EmailLoginScreen extends StatefulWidget {
   const EmailLoginScreen({Key? key}) : super(key: key);
@@ -56,7 +56,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                 ),
                 Align(
                   alignment:
-                      context.read<AppCubit>().locale.languageCode == "ar"
+                      context.read<AppProvider>().locale.languageCode == "ar"
                           ? Alignment.centerRight
                           : Alignment.centerLeft,
                   child: Padding(

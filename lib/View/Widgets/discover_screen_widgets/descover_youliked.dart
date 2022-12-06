@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:roz/View%20Model/discover_provider.dart';
 import 'package:roz/View/Widgets/discover_screen_widgets/dating_user_widget.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
 import '../../../Core/utils/Animation Page/fade_transition.dart';
 import '../../../Core/utils/Animation Page/scale_transition.dart';
 import '../../../Core/utils/user_contact_dialog.dart';
@@ -16,7 +15,7 @@ class DescoverYouLiked extends StatelessWidget {
     required this.cubit,
   }) : super(key: key);
 
-  final AppCubit cubit;
+  final DiscoverProvider cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,8 @@ class DescoverYouLiked extends StatelessWidget {
                 ? Navigator.push(
                     context,
                     ScaleRoute(
-                      page: UserProfileScreen(status:cubit.storyList[index].status ,
+                      page: UserProfileScreen(
+                          status: cubit.storyList[index].status,
                           imgProfile: cubit.storyList[index].imgProfile,
                           image: cubit.storyList[index].imgPath,
                           name: cubit.storyList[index].name),

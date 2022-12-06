@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:roz/Core/utils/Animation%20Page/scale_transition.dart';
 import 'package:roz/View/Widgets/discover_screen_widgets/dating_user_widget.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
 import '../../../Core/utils/Animation Page/fade_transition.dart';
 import '../../../Core/utils/user_contact_dialog.dart';
+import '../../../View Model/discover_provider.dart';
 import '../../Screens/add_story_screen.dart';
 import '../../Screens/dial_screen.dart';
 import '../../Screens/users_profile_screen.dart';
@@ -16,7 +15,7 @@ class DescoverFollwersWidget extends StatelessWidget {
     required this.cubit,
   }) : super(key: key);
 
-  final AppCubit cubit;
+  final DiscoverProvider cubit;
 
   @override
   Widget build(BuildContext context) {

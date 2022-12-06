@@ -5,6 +5,7 @@ import '../Models/add_your_story_model.dart';
 
 class DiscoverProvider extends ChangeNotifier{
   List<String> selectedCountry = ["SY", "SA", "EG", "US", "TR"];
+
   List<AddYourStoryModel> storyList = [
     AddYourStoryModel(
         name: 'Belle Benson',
@@ -64,4 +65,10 @@ class DiscoverProvider extends ChangeNotifier{
           AssetManager.imgProfile9,
         ]),
   ];
+      void changeCountryFlag(String isoCode) {
+    selectedCountry.contains(isoCode)
+        ? selectedCountry.remove(isoCode)
+        : selectedCountry.add(isoCode);
+    notifyListeners();
+  }
 }

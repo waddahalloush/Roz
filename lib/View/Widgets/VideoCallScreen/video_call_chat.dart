@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roz/Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 
 import 'package:roz/Core/utils/media_query_ex.dart';
+
+import '../../../View Model/video_call_provider.dart';
 
 void showVideoCallChatSheet(BuildContext context) => showModalBottomSheet(
     barrierColor: Colors.transparent,
@@ -31,7 +32,7 @@ void showVideoCallChatSheet(BuildContext context) => showModalBottomSheet(
                       color: Colors.white,
                     )),
                 TextField(
-                  controller: context.read<AppCubit>().chatController,
+                  controller: context.read<VideoCallProvider>().chatController,
                   cursorColor: Colors.white,
                   autofocus: true,
                   style:
@@ -52,8 +53,8 @@ void showVideoCallChatSheet(BuildContext context) => showModalBottomSheet(
                             )),
                         IconButton(
                             onPressed: () {
-                              context.read<AppCubit>().chatMessageInVideoCall(
-                                  context.read<AppCubit>().chatController.text);
+                              context.read<VideoCallProvider>().chatMessageInVideoCall(
+                                  context.read<VideoCallProvider>().chatController.text);
                               Navigator.pop(context);
                             },
                             icon: const Icon(

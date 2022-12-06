@@ -4,10 +4,9 @@ import 'package:roz/Core/constants/app_strings.dart';
 import 'package:roz/Core/utils/Animation%20Page/fade_transition.dart';
 import 'package:roz/View/Screens/dial_screen.dart';
 import 'package:roz/View/Widgets/discover_screen_widgets/dating_user_widget.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
 import '../../../Core/utils/Animation Page/scale_transition.dart';
 import '../../../Core/utils/user_contact_dialog.dart';
+import '../../../View Model/discover_provider.dart';
 import '../../Screens/add_story_screen.dart';
 import '../../Screens/users_profile_screen.dart';
 
@@ -17,7 +16,7 @@ class DescoverHomeWidget extends StatelessWidget {
     required this.cubit,
   }) : super(key: key);
 
-  final AppCubit cubit;
+  final DiscoverProvider cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,8 @@ class DescoverHomeWidget extends StatelessWidget {
                 ? Navigator.push(
                     context,
                     ScaleRoute(
-                      page: UserProfileScreen(status:cubit.storyList[index].status ,
+                      page: UserProfileScreen(
+                          status: cubit.storyList[index].status,
                           imgProfile: cubit.storyList[index].imgProfile,
                           image: cubit.storyList[index].imgPath,
                           name: cubit.storyList[index].name),

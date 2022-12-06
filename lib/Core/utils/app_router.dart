@@ -4,7 +4,7 @@ import 'package:roz/View/Screens/contact_us_screen.dart';
 import 'package:roz/View/Screens/edit_profile_screen.dart';
 import 'package:roz/View/Screens/email_login_screen.dart';
 import 'package:roz/View/Screens/intro_screen.dart';
-import 'package:roz/View/Screens/like_intrest_screen.dart';
+
 import 'package:roz/View/Screens/location_screen.dart';
 import 'package:roz/View/Screens/login_screen.dart';
 import 'package:roz/View/Screens/matching_screen.dart';
@@ -77,10 +77,7 @@ class AppRouter {
         return CupertinoPageRoute(
           builder: (context) => const ProfileDetailScreen(),
         );
-      case likeRoute:
-        return CupertinoPageRoute(
-          builder: (context) => const LikeIntrestScreen(),
-        );
+     
       case uploadIdRoute:
         return CupertinoPageRoute(
           builder: (context) => const UploadIdScreen(),

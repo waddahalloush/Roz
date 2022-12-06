@@ -1,9 +1,7 @@
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
+import 'package:roz/View%20Model/app_provider.dart';
 import '../../../Core/utils/app_router.dart';
 
 class AddStoryAppBar extends StatelessWidget {
@@ -23,13 +21,12 @@ class AddStoryAppBar extends StatelessWidget {
             )),
         const SizedBox(
           width: 8,
-        ), Text(
-                  "Add Your Story",
-                  style: Theme.of(context).primaryTextTheme.headline2,
-                ),
-       
+        ),
+        Text(
+          "Add Your Story",
+          style: Theme.of(context).primaryTextTheme.headline2,
+        ),
         const Spacer(),
-      
         IconButton(
           splashRadius: 15,
           icon: Icon(
@@ -47,7 +44,7 @@ class AddStoryAppBar extends StatelessWidget {
             size: 20,
           ),
           onPressed: () {
-            context.read<AppCubit>().openDrawer();
+            context.read<AppProvider>().openDrawer();
           },
         ),
         IconButton(

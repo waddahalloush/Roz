@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:roz/Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
+
+import '../../../View Model/app_provider.dart';
 
 class LoginFormField extends StatelessWidget {
   final String hint;
@@ -35,7 +36,7 @@ class LoginFormField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
-          textAlign: context.read<AppCubit>().locale.languageCode == 'ar'
+          textAlign: context.read<AppProvider>().locale.languageCode == 'ar'
               ? TextAlign.right
               : TextAlign.left,
           controller: controller,

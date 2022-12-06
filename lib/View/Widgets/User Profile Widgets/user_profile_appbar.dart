@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/utils/media_query_ex.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
+import '../../../View Model/app_provider.dart';
 
 class UserProfileAppbar extends StatelessWidget {
   const UserProfileAppbar({
@@ -17,7 +16,7 @@ class UserProfileAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8),
           alignment: Alignment.centerRight,
           width: MediaQuery.of(context).size.width,
-          color: context.read<AppCubit>().isDark == 0
+          color: context.read<AppProvider>().isDark == 0
               ? const Color(0xFF130032)
               : Theme.of(context).scaffoldBackgroundColor,
           height: 65,

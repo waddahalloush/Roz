@@ -12,8 +12,10 @@ import 'package:roz/View%20Model/plans_provider.dart';
 import 'package:roz/View%20Model/profile_details_provider.dart';
 import 'package:roz/View%20Model/top_rated_provider.dart';
 import 'package:roz/View%20Model/verify_code_provider.dart';
+import 'package:roz/View%20Model/video_call_provider.dart';
 
 import '../app_provider.dart';
+import '../block_list_provider.dart';
 
 List<SingleChildWidget> providersList = [
   ChangeNotifierProvider(
@@ -59,5 +61,11 @@ List<SingleChildWidget> providersList = [
   ),
   ChangeNotifierProvider(
     create: (context) => PlansProvider(),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => BlockListProvider(),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => VideoCallProvider(),
   ),
 ];

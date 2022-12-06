@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:roz/View%20Model/app_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
 
 class LanguageWidget extends StatelessWidget {
   const LanguageWidget({
@@ -27,13 +26,13 @@ class LanguageWidget extends StatelessWidget {
       animate: true,
       curve: Curves.easeInOut,
       totalSwitches: 2,
-      labels: context.read<AppCubit>().locale.languageCode == "ar"
+      labels: context.read<AppProvider>().locale.languageCode == "ar"
           ? ['AR', 'EN']
           : ['EN', 'AR'],
       onToggle: (index) {
-        context.read<AppCubit>().locale.languageCode == "ar"
-            ? context.read<AppCubit>().changeLanguage('en')
-            : context.read<AppCubit>().changeLanguage('ar');
+        context.read<AppProvider>().locale.languageCode == "ar"
+            ? context.read<AppProvider>().changeLanguage('en')
+            : context.read<AppProvider>().changeLanguage('ar');
       },
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../Bloc/cubit/app_cubit.dart';
+import 'package:provider/provider.dart';
+import 'package:roz/View%20Model/app_provider.dart';
 
 class MyProfileAppbar extends StatelessWidget {
   const MyProfileAppbar({
@@ -16,7 +15,7 @@ class MyProfileAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8),
           alignment: Alignment.centerLeft,
           width: MediaQuery.of(context).size.width / 2,
-          color: context.read<AppCubit>().isDark == 0
+          color: context.read<AppProvider>().isDark == 0
               ? const Color(0xFF130032)
               : Theme.of(context).scaffoldBackgroundColor,
           height: 65,
@@ -24,7 +23,7 @@ class MyProfileAppbar extends StatelessWidget {
             icon: const Icon(Icons.settings_outlined),
             color: Theme.of(context).iconTheme.color,
             onPressed: () {
-              context.read<AppCubit>().openDrawer();
+              context.read<AppProvider>().openDrawer();
             },
           ),
         ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/utils/media_query_ex.dart';
-
-import '../../Bloc/cubit/app_cubit.dart';
 import '../../Core/constants/app_strings.dart';
 import '../../Core/utils/app_router.dart';
+import '../../View Model/app_provider.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -62,26 +61,26 @@ class AppDrawer extends StatelessWidget {
               ),
               SettingListTileWidget(
                 icon: Icons.language,
-                name: context.read<AppCubit>().locale.languageCode == 'ar'
+                name: context.read<AppProvider>().locale.languageCode == 'ar'
                     ? AppStrings.settingEnglish(context)
                     : AppStrings.settingArabic(context),
                 onTap: () {
-                  context.read<AppCubit>().changeLanguage(
-                      context.read<AppCubit>().locale.languageCode == 'ar'
+                  context.read<AppProvider>().changeLanguage(
+                      context.read<AppProvider>().locale.languageCode == 'ar'
                           ? "en"
                           : "ar");
                 },
               ),
               SettingListTileWidget(
-                icon: context.read<AppCubit>().isDark == 0
+                icon: context.read<AppProvider>().isDark == 0
                     ? Icons.light_mode
                     : Icons.nights_stay,
-                name: context.read<AppCubit>().isDark == 0
+                name: context.read<AppProvider>().isDark == 0
                     ? AppStrings.settingLight(context)
                     : AppStrings.settingDark(context),
                 onTap: () {
-                  context.read<AppCubit>().changeTheme(
-                      context.read<AppCubit>().isDark == 0 ? 1 : 0);
+                  context.read<AppProvider>().changeTheme(
+                      context.read<AppProvider>().isDark == 0 ? 1 : 0);
                 },
               ),
               SettingListTileWidget(

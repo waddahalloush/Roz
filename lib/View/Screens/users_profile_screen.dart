@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'package:roz/Core/utils/media_query_ex.dart';
 import 'package:roz/View/Screens/chat_screen.dart';
 import 'package:roz/View/Widgets/User%20Profile%20Widgets/user_profile_picture.dart';
 
-import '../../Bloc/cubit/app_cubit.dart';
 import '../../Core/constants/app_strings.dart';
+import '../../View Model/app_provider.dart';
 import '../Widgets/User Profile Widgets/user_profile_appbar.dart';
 import '../Widgets/User Profile Widgets/user_social_grid.dart';
 import '../Widgets/my_profile_widgets/gifts_widget.dart';
@@ -115,7 +115,7 @@ class UserProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8),
                 alignment: Alignment.centerRight,
                 width: MediaQuery.of(context).size.width,
-                color: context.read<AppCubit>().isDark == 0
+                color: context.read<AppProvider>().isDark == 0
                     ? const Color(0xFF130032)
                     : Theme.of(context).scaffoldBackgroundColor,
                 height: 15,
@@ -223,7 +223,7 @@ class UserProfileScreen extends StatelessWidget {
                     ),
                     Align(
                       alignment:
-                          context.read<AppCubit>().locale.languageCode == 'ar'
+                          context.read<AppProvider>().locale.languageCode == 'ar'
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
                       child: Text(
@@ -258,7 +258,7 @@ class UserProfileScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 15),
                       child: Align(
                         alignment:
-                            context.read<AppCubit>().locale.languageCode == 'ar'
+                            context.read<AppProvider>().locale.languageCode == 'ar'
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
                         child: Text(
@@ -293,7 +293,7 @@ class UserProfileScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.only(top: 8, bottom: 5),
                       alignment:
-                          context.read<AppCubit>().locale.languageCode == 'ar'
+                          context.read<AppProvider>().locale.languageCode == 'ar'
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
                       child: Text(
@@ -303,7 +303,7 @@ class UserProfileScreen extends StatelessWidget {
                     ),
                     Align(
                       alignment:
-                          context.read<AppCubit>().locale.languageCode == 'ar'
+                          context.read<AppProvider>().locale.languageCode == 'ar'
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
                       child: Text(
@@ -315,7 +315,7 @@ class UserProfileScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 40, bottom: 10),
                       child: Align(
                         alignment:
-                            context.read<AppCubit>().locale.languageCode == 'ar'
+                            context.read<AppProvider>().locale.languageCode == 'ar'
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
                         child: Row(mainAxisSize: MainAxisSize.min, children: [
