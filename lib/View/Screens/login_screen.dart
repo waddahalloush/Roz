@@ -69,6 +69,7 @@ class LoginScreen extends StatelessWidget {
                     heroTag: "s",
                     backgroundColor: Colors.white,
                     onPressed: () {
+                      
                       Navigator.pushReplacementNamed(
                           context, AppRouter.homeRoute);
                     },

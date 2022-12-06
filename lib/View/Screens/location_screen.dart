@@ -9,13 +9,34 @@ import 'package:roz/Core/utils/media_query_ex.dart';
 
 import '../../Core/constants/app_strings.dart';
 
-class LocationScreen extends StatelessWidget {
+class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key}) : super(key: key);
 
   @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+   late TextEditingController locationController;
+  late TextEditingController newLocationController;
+
+  @override
+  void initState() {
+    locationController = TextEditingController();
+    newLocationController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    locationController.dispose();
+    newLocationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController locationController = TextEditingController();
-    TextEditingController newLocationController = TextEditingController();
+   
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFEEFCFF),

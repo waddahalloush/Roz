@@ -37,13 +37,15 @@ class EditProfileWidget extends StatelessWidget {
               size: 30,
             ),
             const SizedBox(
-              width: 10,
+              width: 3,
             ),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+            Flexible(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
               ),
             ),
           ],

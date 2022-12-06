@@ -6,6 +6,22 @@ import '../Core/Theme/theme_cache_helper.dart';
 class AppProvider extends ChangeNotifier {
   Locale locale = const Locale('en');
   int isDark = 0;
+  int ci = 0;
+  int bottomNavIndex = 0;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+ void openDrawer() {
+    scaffoldKey.currentState!.openDrawer();
+    notifyListeners();
+  }
+
+  void changeNav(int i) {
+    ci = i;
+    bottomNavIndex = i;
+
+    notifyListeners();
+  }
+
   Future<void> getSavedTheme() async {
     isDark = await ThemeCacheHelper().getCachedThemeIndex();
 
