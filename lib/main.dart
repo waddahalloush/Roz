@@ -10,7 +10,7 @@ import 'View Model/Providers List/providers.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MultiProvider(providers:providersList, child: const MyApp()));
+  runApp(MultiProvider(providers: providersList, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return Consumer<AppProvider>(
+      builder: (context, myType, child) {
+        return MaterialApp(
           title: 'Roz App',
           debugShowCheckedModeBanner: false,
           locale: context.read<AppProvider>().locale,
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: AppRouter.splashRoute,
         );
-     
+      },
+    );
   }
 }

@@ -112,8 +112,9 @@ class _DialScreenState extends State<DialScreen> {
               //   ],
               // ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 500),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
                       onTap: () {
@@ -151,7 +152,7 @@ class _DialScreenState extends State<DialScreen> {
                         width: 70,
                         height: 70,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color:Colors.teal),
+                            shape: BoxShape.circle, color: Colors.teal),
                         child: const Icon(
                           Icons.call_end,
                           color: Colors.white,
