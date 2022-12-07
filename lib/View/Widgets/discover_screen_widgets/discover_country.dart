@@ -23,7 +23,7 @@ class DescoverCountryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiquidPullToRefresh(
-       showChildOpacityTransition: false,
+      showChildOpacityTransition: false,
       color: Colors.transparent,
       backgroundColor: Colors.deepPurple,
       onRefresh: () async {},
@@ -38,7 +38,7 @@ class DescoverCountryWidget extends StatelessWidget {
                 },
                 child: Row(
                   children: [
-                    Expanded(
+                    Flexible(
                       flex: 2,
                       child: Container(
                         alignment: Alignment.center,
@@ -52,12 +52,13 @@ class DescoverCountryWidget extends StatelessWidget {
                                     cubit.selectedCountry[index], index))),
                       ),
                     ),
-                    const Spacer(),
                     Text(
                       AppStrings.manyMore(context),
                       style: Theme.of(context).primaryTextTheme.caption,
                     ),
-                    const Spacer(),
+                    const SizedBox(
+                      width: 30,
+                    ),
                     Text(
                       AppStrings.changeFlag(context),
                       style: Theme.of(context).primaryTextTheme.headline2,
@@ -84,15 +85,16 @@ class DescoverCountryWidget extends StatelessWidget {
                 onOffColor: cubit.storyList[index].status == 'Online'
                     ? Colors.greenAccent
                     : cubit.storyList[index].status == "Private"
-                         ? Colors.red
-                                  : Colors.grey.shade300,
+                        ? Colors.red
+                        : Colors.grey.shade300,
                 onOffString: cubit.storyList[index].status,
                 onTap: () {
                   cubit.storyList[index].imgProfile.isEmpty
                       ? Navigator.push(
                           context,
                           ScaleRoute(
-                            page: UserProfileScreen(status:cubit.storyList[index].status ,
+                            page: UserProfileScreen(
+                                status: cubit.storyList[index].status,
                                 imgProfile: cubit.storyList[index].imgProfile,
                                 image: cubit.storyList[index].imgPath,
                                 name: cubit.storyList[index].name),
@@ -109,29 +111,29 @@ class DescoverCountryWidget extends StatelessWidget {
                                     ? Colors.greenAccent
                                     : cubit.storyList[index].status == "Private"
                                         ? Colors.red
-                                  : Colors.grey.shade300,
+                                        : Colors.grey.shade300,
                                 name: cubit.storyList[index].name),
                           ));
                 },
                 videoCall: () {
-                cubit.storyList[index].status == "Private"
-                  ? userContactDialog(context, cubit.storyList[index].imgPath,
-                      () {
-                      Navigator.push(
+                  cubit.storyList[index].status == "Private"
+                      ? userContactDialog(
+                          context, cubit.storyList[index].imgPath, () {
+                          Navigator.push(
+                              context,
+                              FadeRoute(
+                                  page: DialScreen(
+                                image: cubit.storyList[index].imgPath,
+                                name: cubit.storyList[index].name,
+                              )));
+                        })
+                      : Navigator.push(
                           context,
                           FadeRoute(
                               page: DialScreen(
                             image: cubit.storyList[index].imgPath,
                             name: cubit.storyList[index].name,
                           )));
-                    })
-                  : Navigator.push(
-                      context,
-                      FadeRoute(
-                          page: DialScreen(
-                        image: cubit.storyList[index].imgPath,
-                        name: cubit.storyList[index].name,
-                      )));
                 },
               ),
             ),

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../Core/constants/asset_manager.dart';
 import '../Models/add_your_story_model.dart';
 
-class DiscoverProvider extends ChangeNotifier{
+class DiscoverProvider extends ChangeNotifier {
+ 
   List<String> selectedCountry = ["SY", "SA", "EG", "US", "TR"];
 
   List<AddYourStoryModel> storyList = [
@@ -65,7 +66,7 @@ class DiscoverProvider extends ChangeNotifier{
           AssetManager.imgProfile9,
         ]),
   ];
-      void changeCountryFlag(String isoCode) {
+  void changeCountryFlag(String isoCode) {
     selectedCountry.contains(isoCode)
         ? selectedCountry.remove(isoCode)
         : selectedCountry.add(isoCode);

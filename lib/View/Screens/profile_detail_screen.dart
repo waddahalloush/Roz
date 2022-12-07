@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 import 'package:roz/Core/constants/asset_manager.dart';
 import 'package:roz/Core/utils/app_router.dart';
 import 'package:roz/Core/utils/Global%20Widgets/login_formfield.dart';
+import 'package:roz/View%20Model/profile_details_provider.dart';
 import 'package:roz/View/Widgets/profile_details_widgets/image_widget.dart';
 import 'package:roz/Core/utils/Global%20Widgets/gradiant_button.dart';
 
@@ -71,9 +73,21 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
               const SizedBox(
                 height: 20,
               ),
-              ProfileWidget(
-                  onClicked: () {},
-                  image: const AssetImage(AssetManager.profileImage)),
+              Consumer<ProfileDetailsProvider>(
+                builder: (context, myType, child) {
+                  return myType.profileImg == null
+                      ? ProfileWidget(
+                          onClicked: () {
+                            myType.upLoadImage(context);
+                          },
+                          image: const AssetImage(AssetManager.avatar))
+                      : ProfileWidget(
+                          onClicked: () {
+                            myType.upLoadImage(context);
+                          },
+                          image: FileImage(myType.profileImg!));
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),

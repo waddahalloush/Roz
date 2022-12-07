@@ -1,6 +1,7 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:roz/Core/constants/app_strings.dart';
 
 import '../../View Model/discover_provider.dart';
@@ -70,57 +71,65 @@ void openCountryPickerDialog(BuildContext context, DiscoverProvider prov) =>
           ],
           itemBuilder: (Country country) => Transform.scale(
               scale: 1.1,
-              child: CheckboxListTile(
-                dense: true,
-                checkColor: Colors.white,
-                activeColor: Colors.pink,
-                visualDensity: VisualDensity.comfortable,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-                checkboxShape: const CircleBorder(),
-                controlAffinity: ListTileControlAffinity.leading,
-                secondary: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(
-                      Icons.videocam,
-                      size: 20,
+              child: Consumer<DiscoverProvider>(
+                builder: (context, myType, child) {
+                  return CheckboxListTile(
+                    dense: true,
+                    checkColor: Colors.white,
+                    activeColor: Colors.pink,
+                    visualDensity: VisualDensity.comfortable,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+                    checkboxShape: const CircleBorder(),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    secondary: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(
+                          Icons.videocam,
+                          size: 20,
+                        ),
+                        Text(
+                          "234",
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        )
+                      ],
                     ),
-                    Text(
-                      "234",
-                      style: TextStyle(color: Colors.black, fontSize: 12),
-                    )
-                  ],
-                ),
-                title: Transform.translate(
-                  offset: const Offset(-15, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
+                    title: Transform.translate(
+                      offset: const Offset(-15, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
+                              ),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(35),
+                                  child: CountryPickerUtils.getDefaultFlagImage(
+                                      country))),
+                          Flexible(
+                            child: Text(
+                              country.name,
+                              style: const TextStyle(
+                                  overflow: TextOverflow.clip,
+                                  fontSize: 13,
+                                  color: Colors.indigo,
+                                  fontWeight: FontWeight.w700),
+                            ),
                           ),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(35),
-                              child: CountryPickerUtils.getDefaultFlagImage(
-                                  country))),
-                      Text(
-                        country.name,
-                        style: const TextStyle(
-                            fontSize: 13,
-                            color: Colors.indigo,
-                            fontWeight: FontWeight.w900),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                onChanged: (value) {
-                  prov.changeCountryFlag(country.isoCode);
+                    ),
+                    onChanged: (value) {
+                      myType.changeCountryFlag(country.isoCode);
+                    },
+                    value: myType.selectedCountry.contains(country.isoCode),
+                  );
                 },
-                value: prov.selectedCountry.contains(country.isoCode),
               ))),
     );
 
