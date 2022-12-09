@@ -2,10 +2,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:roz/Core/utils/Animation%20Page/fade_transition.dart';
 import 'package:roz/Core/utils/media_query_ex.dart';
 import 'package:roz/View/Screens/video_calling_screen.dart';
 
-import '../../Core/utils/Animation Page/fade_transition.dart';
 import '../../Core/utils/app_router.dart';
 import '../../Core/utils/exit_alert_dialog.dart';
 
@@ -23,17 +24,38 @@ class DialScreen extends StatefulWidget {
 }
 
 class _DialScreenState extends State<DialScreen> {
-  startTime() {
-    var duration = const Duration(seconds: 3);
-    return Timer(duration, () {
-      Navigator.of(context)
-          .pushReplacement(FadeRoute(page: const VideoCallingScreen()));
-    });
+  showMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+    ));
+  }
+
+  Future<bool> startTime() async {
+    await [Permission.camera, Permission.microphone].request();
+    // var duration = const Duration(seconds: 3);
+    // return Timer(duration, () {
+    //   Navigator.of(context)
+    //       .pushReplacement(FadeRoute(page: const VideoCallingScreen()));
+    // });
+    var cameraPer = await Permission.camera.request();
+    var microPhonePer = await Permission.microphone.request();
+    if (cameraPer.isGranted || microPhonePer.isGranted) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
   void initState() {
-    startTime();
+    startTime().then((value) => value
+        ? Future.delayed(
+            const Duration(milliseconds: 500),
+            () => Navigator.pushReplacement(
+                context, FadeRoute(page: const VideoCallingScreen())),
+          )
+        : null);
+
     super.initState();
   }
 
@@ -79,88 +101,29 @@ class _DialScreenState extends State<DialScreen> {
                     color: Colors.white),
               ),
               const Spacer(),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     DialButton(
-              //       iconSrc: context.read<AppCubit>().volumMute
-              //           ? Icons.volume_off
-              //           : Icons.volume_up,
-              //       text: "Microphone",
-              //       press: () {
-              //         context.read<AppCubit>().muteVolume();
-              //       },
-              //     ),
-              //     DialButton(
-              //       iconSrc: Icons.videocam,
-              //       text: "Video",
-              //       press: () {
-              //         Navigator.pushReplacementNamed(
-              //             context, AppRouter.videocallRoute);
-              //       },
-              //     ),
-              //     DialButton(
-              //       iconSrc: Icons.wechat,
-              //       text: "Message",
-              //       press: () {
-              //         Navigator.pushReplacement(
-              //             context,
-              //             FadeRoute(
-              //                 page: ChatScreen(image: image, name: name)));
-              //       },
-              //     ),
-              //   ],
-              // ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        showExitAlert(context);
-                      },
-                      onDoubleTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, AppRouter.homeRoute);
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        width: 70,
-                        height: 70,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Color(0xFFDD3663)),
-                        child: const Icon(
-                          Icons.call_end,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                      ),
+                child: InkWell(
+                  onTap: () {
+                    showExitAlert(context);
+                  },
+                  onDoubleTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, AppRouter.homeRoute);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    width: 70,
+                    height: 70,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Color(0xFFDD3663)),
+                    child: const Icon(
+                      Icons.call_end,
+                      color: Colors.white,
+                      size: 35,
                     ),
-                    InkWell(
-                      onTap: () {
-                        showExitAlert(context);
-                      },
-                      onDoubleTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, AppRouter.homeRoute);
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        width: 70,
-                        height: 70,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.teal),
-                        child: const Icon(
-                          Icons.call_end,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               )
             ],
